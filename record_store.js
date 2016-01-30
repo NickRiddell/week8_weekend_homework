@@ -11,6 +11,24 @@ RecordStore.prototype = {
   },
   addNewBalance: function(balance){
     this.registerBalance.push(balance)
+  },
+  listInventory: function(){
+    for (item of this.inventory){
+      console.log(item);
+    }
+  },
+  displayElement: function(element){
+    console.log(element);
+  },
+  listRecordTitles: function(){
+    for (item of this.inventory){
+      console.log(item.title);
+    }
+  },
+  listRecordTitleAndArtist: function(){
+    for (item of this.inventory){
+      console.log(item.artist + ': ' + item.title);
+    }
   }
 }
 

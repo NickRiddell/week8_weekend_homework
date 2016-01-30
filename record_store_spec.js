@@ -29,7 +29,36 @@ describe('record_store', function(){
   it("has a balance of 1000", function(){
     var store1 = new RecordStore();
     store1.addNewBalance(1000);
-    console.log(store1.registerBalance);
     assert.equal(1000, store1.registerBalance);
+  });
+
+  it("has an inventory list", function(){
+    var store1 = new RecordStore();
+    var record1 = new Record('The Beatles', 'Sgt Peppers Lonely Hearts Club Band', 10);
+    var record2 = new Record('The Beach Boys', 'Pet Sounds', 10);
+    store1.addRecord(record1);
+    store1.addRecord(record2);
+    store1.listInventory(store1.inventory, store1.displayElement);
+    assert.isAbove(store1.inventory.length, 0);
+  });
+
+  it("can list record titles", function(){
+    var store1 = new RecordStore();
+    var record1 = new Record('The Beatles', 'Sgt Peppers Lonely Hearts Club Band', 10);
+    var record2 = new Record('The Beach Boys', 'Pet Sounds', 10);
+    store1.addRecord(record1);
+    store1.addRecord(record2);
+    store1.listRecordTitles(store1.inventory, store1.displayElement);
+    assert.isAbove(store1.inventory.length, 0);
+  });
+
+  it("can list record artists", function(){
+    var store1 = new RecordStore();
+    var record1 = new Record('The Beatles', 'Sgt Peppers Lonely Hearts Club Band', 10);
+    var record2 = new Record('The Beach Boys', 'Pet Sounds', 10);
+    store1.addRecord(record1);
+    store1.addRecord(record2);
+    store1.listRecordTitleAndArtist(store1.inventory, store1.displayElement);
+    assert.isAbove(store1.inventory.length, 0);
   });
 });
