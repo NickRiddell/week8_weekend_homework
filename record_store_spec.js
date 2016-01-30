@@ -19,4 +19,17 @@ describe('record_store', function(){
     store1.addRecord(record2);
     assert.isAbove(store1.inventory.length, 1);
   });
+
+  it("has a register balance", function(){
+    var store1 = new RecordStore();
+    store1.addNewBalance(500);
+    assert.isAbove(store1.registerBalance.length, 0);
+  });
+
+  it("has a balance of 1000", function(){
+    var store1 = new RecordStore();
+    store1.addNewBalance(1000);
+    console.log(store1.registerBalance);
+    assert.equal(1000, store1.registerBalance);
+  });
 });
