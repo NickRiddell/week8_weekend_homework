@@ -29,7 +29,17 @@ RecordStore.prototype = {
     for (item of this.inventory){
       console.log(item.artist + ': ' + item.title);
     }
+  },
+  sellRecord: function(record){
+    console.log(this.registerBalance);
+    var index = this.inventory.indexOf(record);
+    if (index > -1) {
+        this.inventory.splice(index, 1);
+    var oldBlance = this.registerBalance.pop();
+    var newBalance = oldBlance + record.price;
+    this.registerBalance.push(newBalance);
+    console.log(this.registerBalance);
+    }
   }
 }
-
 module.exports = RecordStore

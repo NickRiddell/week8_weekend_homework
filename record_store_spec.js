@@ -61,4 +61,18 @@ describe('record_store', function(){
     store1.listRecordTitleAndArtist(store1.inventory, store1.displayElement);
     assert.isAbove(store1.inventory.length, 0);
   });
+
+  it("can sell a record", function(){
+    var store1 = new RecordStore();
+    var record1 = new Record('The Beatles', 'Sgt Peppers Lonely Hearts Club Band', 10);
+    var record2 = new Record('The Beach Boys', 'Pet Sounds', 10);
+    store1.addNewBalance(500);
+    store1.addRecord(record1);
+    store1.addRecord(record2);
+    store1.listRecordTitleAndArtist(store1.inventory, store1.displayElement);
+    store1.sellRecord(record1);
+    store1.listRecordTitleAndArtist(store1.inventory, store1.displayElement);
+    assert.notInclude(store1.inventory, record1);
+    assert.equal(510, store1.registerBalance);
+  });
 });
