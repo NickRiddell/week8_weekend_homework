@@ -13,24 +13,28 @@ RecordStore.prototype = {
     this.registerBalance.push(balance)
   },
   listInventory: function(){
+    inventoryList = []
     for (item of this.inventory){
-      console.log(item);
+      inventoryList.push(item);
     }
   },
   displayElement: function(element){
     console.log(element);
   },
   listRecordTitles: function(){
+    titleList = []
     for (item of this.inventory){
-      console.log(item.title);
+      titleList.push(item.title);
     }
   },
   listRecordTitleAndArtist: function(){
+    titleArtistList = []
     for (item of this.inventory){
-      console.log(item.artist + ': ' + item.title);
+      titleArtistList.push(item.artist + ': ' + item.title);
     }
   },
   sellRecord: function(record){
+    console.log(this.inventory);
     console.log(this.registerBalance);
     var index = this.inventory.indexOf(record);
     if (index > -1) {
@@ -38,6 +42,7 @@ RecordStore.prototype = {
     var oldBlance = this.registerBalance.pop();
     var newBalance = oldBlance + record.price;
     this.registerBalance.push(newBalance);
+    console.log(this.inventory);
     console.log(this.registerBalance);
     }
   }

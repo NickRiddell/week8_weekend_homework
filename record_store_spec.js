@@ -39,7 +39,8 @@ describe('record_store', function(){
     store1.addRecord(record1);
     store1.addRecord(record2);
     store1.listInventory(store1.inventory, store1.displayElement);
-    assert.isAbove(store1.inventory.length, 0);
+    console.log(inventoryList);
+    assert.isAbove(inventoryList.length, 0);
   });
 
   it("can list record titles", function(){
@@ -49,7 +50,8 @@ describe('record_store', function(){
     store1.addRecord(record1);
     store1.addRecord(record2);
     store1.listRecordTitles(store1.inventory, store1.displayElement);
-    assert.isAbove(store1.inventory.length, 0);
+    console.log(titleList);
+    assert.isAbove(titleList.length, 0);
   });
 
   it("can list record artists", function(){
@@ -59,7 +61,8 @@ describe('record_store', function(){
     store1.addRecord(record1);
     store1.addRecord(record2);
     store1.listRecordTitleAndArtist(store1.inventory, store1.displayElement);
-    assert.isAbove(store1.inventory.length, 0);
+    console.log(titleArtistList);
+    assert.isAbove(titleArtistList.length, 0);
   });
 
   it("can sell a record", function(){
