@@ -2,6 +2,7 @@ var RecordStore = function(name, city){
   this.name = name;
   this.city = city;
   this.registerBalance = [];
+  this.registerBalanceHistory = [];
   this.inventory = [];
 };
 
@@ -10,7 +11,8 @@ RecordStore.prototype = {
     this.inventory.push(record);
   },
   addNewBalance: function(balance){
-    this.registerBalance.push(balance)
+    this.registerBalance.push(balance);
+    this.registerBalanceHistory.push(balance);
   },
   listInventory: function(){
     inventoryList = []
@@ -34,17 +36,22 @@ RecordStore.prototype = {
     }
   },
   sellRecord: function(record){
-    console.log(this.inventory);
-    console.log(this.registerBalance);
     var index = this.inventory.indexOf(record);
     if (index > -1) {
         this.inventory.splice(index, 1);
     var oldBlance = this.registerBalance.pop();
     var newBalance = oldBlance + record.price;
     this.registerBalance.push(newBalance);
-    console.log(this.inventory);
-    console.log(this.registerBalance);
+    this.registerBalanceHistory.push(newBalance);
     }
-  }
+  },
+  talkMoneyToMe: function() {
+    inventoryTotal = [];
+   var total = 0;
+   for (var i=0;i<this.inventory.length;i++) {
+    total += this.inventory[i].price;
+   }
+   inventoryTotal.push(total);
+ }
 }
 module.exports = RecordStore
