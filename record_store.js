@@ -52,6 +52,17 @@ RecordStore.prototype = {
     total += this.inventory[i].price;
    }
    inventoryTotal.push(total);
+ },
+ sellRecordToCollector: function(record, collector){
+   var index = this.inventory.indexOf(record);
+   if (index > -1) {
+       this.inventory.splice(index, 1);
+   var oldBlance = this.registerBalance.pop();
+   var newBalance = oldBlance + record.price;
+   this.registerBalance.push(newBalance);
+   this.registerBalanceHistory.push(newBalance);
+   collector.collection.push(record);
+   }
  }
 }
 module.exports = RecordStore

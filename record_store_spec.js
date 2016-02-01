@@ -122,4 +122,22 @@ describe('record_store', function(){
     console.log("The current store register balance is: £" + store1.registerBalance);
     assert.isAbove(inventoryTotal.length, 0);
   });
+
+it("can sell a record to a specific collector", function(){
+  var store1 = new RecordStore("Nick's Records", "Edinburgh");
+  var record1 = new Record('The Beatles', 'Sgt Peppers Lonely Hearts Club Band', 10);
+  var record2 = new Record('The Beach Boys', 'Pet Sounds', 10);
+  var collector1 = new RecordCollector('Sweaty Bob', 'Sweaty and nervous');
+  store1.addNewBalance(500);
+  store1.addRecord(record1);
+  store1.addRecord(record2);
+  store1.sellRecordToCollector(record1, collector1);
+  store1.listRecordTitleAndArtist(store1.inventory, store1.displayElement);
+  console.log(store1.inventory);
+  console.log(store1.registerBalance);
+  console.log(store1.registerBalanceHistory);
+  assert.notInclude(store1.inventory, record1);
+  assert.equal(510, store1.registerBalance);
+  assert.include(collector1.collection, record1);
+  });
 });
